@@ -1,0 +1,54 @@
+[
+    {
+        "id": "intro",
+        "desc": "<span>You find yourself next to a escape pod.</span><br /><span>The planet is full of rubish and scrap</span>",
+        "index": 0,
+        "req": {
+            "target": "stamania",
+            "type": "resource",
+            "value": 5
+        },
+        "unlock": [
+            {
+                "target": "collect_scrap",
+                "type": "action"
+            },
+            {
+                "target": "scrap",
+                "type": "resource"
+            }
+        ]
+    },
+    {
+        "id": "start",
+        "desc": "<span>Maybe you should build something</span>",
+        "index": 1,
+        "req": {
+            "target": "scrap",
+            "type": "resource",
+            "value": 5
+        },
+        "unlock": [
+            {
+                "target": "structure",
+                "type": "tab"
+            }
+        ]
+    },
+    {
+        "id": "start",
+        "desc": "<span>Now lets expand our base</span>",
+        "index": 2,
+        "req": {
+            "target": "structure",
+            "type": "shelter",
+            "value": 1
+        },
+        "unlock": [
+            {
+                "target": "upgrades",
+                "type": "tab"
+            }
+        ]
+    }
+]

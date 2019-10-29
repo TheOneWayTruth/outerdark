@@ -1,0 +1,22 @@
+[
+    {
+        "id": "stamnia",
+        "name": "stamnia",
+        "value": 0,
+        "max": 5,
+        "tick": 0,
+        "desc": "needed to execute actions",
+        "procent": 0,
+        "color": "#baa329"
+    },
+    {
+        "id": "scrap",
+        "name": "scrap",
+        "value": 0,
+        "max": 10,
+        "tick": 0,
+        "desc": "could be usefull",
+        "procent": 0,
+        "color": "#8f8f8f"
+    }
+]
