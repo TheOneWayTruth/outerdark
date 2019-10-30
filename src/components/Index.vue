@@ -2,14 +2,12 @@
   <div class="kiste">
     <Resources />
     <Actions ref="actions" />
-    <Structures />
     <Upgrades />
     <Logs :items="player.logs" />
   </div>
 </template>
 
 <script>
-import Structures from "./Structures/Structures.vue";
 import Resources from "./Resources/Resources.vue";
 import Actions from "./Actions/Actions.vue";
 import Upgrades from "./Upgrades/Upgrades.vue";
@@ -20,10 +18,12 @@ import { filterList, getItemById } from "./functions";
 import actionslist from "./json/actions.json";
 import reslist from "./json/resources.json";
 import storylist from "./json/story.json";
+import upglist from "./json/upgrades.json";
 
 p.lists.actions = actionslist;
 p.lists.resources = reslist;
 p.lists.story = storylist;
+p.lists.upgrades = upglist;
 
 export default {
   watch: {
@@ -41,8 +41,14 @@ export default {
       }
     }
   },
+  beforeDestroy() {
+    clearInterval(this.timer);
+  },
+  beforeMount() {
+    this.LoadGame();
+    this.StartTimer();
+  },
   components: {
-    Structures,
     Resources,
     Actions,
     Upgrades,
@@ -54,17 +60,44 @@ export default {
     };
   },
   methods: {
+    StartTimer() {
+      this.timer = setInterval(() => {
+        this.saveGame();
+      }, 10000);
+    },
+    saveGame() {
+      if (this.loaded) {
+        window.localStorage.setItem("savegame", JSON.stringify(this.player));
+      }
+    },
+    LoadGame() {
+      let data = window.localStorage.getItem("savegame");
+      if (data != null) {
+        this.player = JSON.parse(data);
+      }
+      this.loaded = true;
+    },
     CheckStory() {
-      let l = getItemById(
-        p.lists[p.lists.story[p.story].req.type],
-        p.lists.story[p.story].req.target
-      );
-      if (l.value >= p.lists.story[p.story].req.value) {
-        for (let u in p.lists.story[p.story].unlock) {
-          let i = p.lists.story[p.story].unlock[u];
-          p.unlocked[i.type].push(i.target);
+      if (this.player.progress < this.player.lists.story.length) {
+        let l = getItemById(
+          this.player.lists[
+            this.player.lists.story[this.player.progress].req.type
+          ],
+          this.player.lists.story[this.player.progress].req.target
+        );
+
+        if (
+          l.value >= this.player.lists.story[this.player.progress].req.value
+        ) {
+          for (let u in this.player.lists.story[this.player.progress].unlock) {
+            let i = this.player.lists.story[this.player.progress].unlock[u];
+            this.player.unlocked[i.type].push(i.target);
+          }
+          this.player.logs.push(
+            this.player.lists.story[this.player.progress].desc
+          );
+          this.player.progress++;
         }
-        p.story++;
       }
     }
   }

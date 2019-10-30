@@ -1,11 +1,12 @@
 var p = {
     lists: {},
-    logs: [],
-    story: 0,
+    logs: ["<span>You feel sick..</span>"],
+    progress: 0,
+    bought: [],
     unlocked: {
         resources: ["stamnia"],
         actions: ["rest"],
-        tab: []
+        upgrades: []
     },
     tasks: []
 }

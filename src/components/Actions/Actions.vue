@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h4>Actions:</h4>
     <div :key="item.id" v-for="item in getList()">
       <Action :ref="item.id" :item="item" />
     </div>

@@ -21,6 +21,7 @@ export default {
   user-select: none;
 }
 body {
+  color: white;
   background: black;
 }
 </style>

@@ -1,13 +1,14 @@
 <template>
   <div>
-    <div :key="ix" v-for="(item,ix) in getList()">
+    <h4>Resources:</h4>
+    <div :key="item.id" v-for="item in getList()">
       <Resource :item="item" />
     </div>
   </div>
 </template>
 <script>
 import { filterList } from "../functions.js";
-import list from "../json/resources.json";
+
 import Resource from "./Resource.vue";
 
 export default {
@@ -16,7 +17,10 @@ export default {
   },
   methods: {
     getList() {
-      return filterList(list, this.$parent.player.unlocked.resources);
+      return filterList(
+        this.$parent.player.lists.resources,
+        this.$parent.player.unlocked.resources
+      );
     }
   }
 };

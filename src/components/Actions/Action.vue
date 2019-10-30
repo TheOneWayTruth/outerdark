@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div @click="StartAction(item)" class="top">
-      <span :class="{cant : cantAfford(item)}" class="text">{{item.name}}</span>
+    <div @click="StartAction()" class="top">
+      <span :class="{cant : cantAfford()}" class="text">{{item.name}}</span>
       <span class="bar" :style="{ width: item.percent + '%', backgroundColor:item.color }"></span>
     </div>
   </div>
@@ -28,30 +28,40 @@ export default {
     }
   },
   methods: {
-    cantAfford(item) {
-      for (let i = 0; i < item.cost.length; i++) {
+    cantAfford() {
+      for (let i = 0; i < this.item.cost.length; i++) {
         let e = getItemById(
           this.$parent.$parent.player.lists.resources,
-          item.cost[i].target
+          this.item.cost[i].target
         );
 
-        if (e.value < item.cost[i].rate) {
+        if (e.value < this.item.cost[i].rate) {
           return true;
         }
       }
       return false;
     },
-    addValue(item) {
-      for (let i = 0; i < item.get.length; i++) {
+    addValue() {
+      for (let i = 0; i < this.item.get.length; i++) {
         let e = getItemById(
           this.$parent.$parent.player.lists.resources,
-          item.get[i].target
+          this.item.get[i].target
         );
-        if (e.value + item.get[i].rate >= e.max) {
+        if (e.value + this.item.get[i].rate > e.max) {
           e.value = e.max;
         } else {
-          e.value += item.get[i].rate;
+          e.value += this.item.get[i].rate;
         }
+        e.procent = (e.value / e.max) * 100;
+      }
+    },
+    removeValue() {
+      for (let i = 0; i < this.item.cost.length; i++) {
+        let e = getItemById(
+          this.$parent.$parent.player.lists.resources,
+          this.item.cost[i].target
+        );
+        e.value -= this.item.cost[i].rate;
         e.procent = (e.value / e.max) * 100;
       }
     },
@@ -61,9 +71,10 @@ export default {
         if (this.item.percent >= 100) {
           this.item.percent = 0;
           this.addValue(this.item);
+          this.removeValue(this.item);
         }
         if (this.cantAfford(this.item)) {
-          this.$parent.$parent.player.tasks.push("rest");
+          this.$parent.$parent.player.tasks[0] = "rest";
           this.item.paused = true;
         }
       }
@@ -71,13 +82,13 @@ export default {
     isActive() {
       return isIdInArray(this.$parent.$parent.player.tasks, this.item.id);
     },
-    StartAction(i) {
-      if (!this.cantAfford(i)) {
+    StartAction() {
+      if (!this.cantAfford()) {
         if (!this.isActive()) {
           if (this.$parent.$parent.player.tasks.length > 0) {
             this.$parent.$parent.player.tasks.pop();
           }
-          this.$parent.$parent.player.tasks.push(i.id);
+          this.$parent.$parent.player.tasks.push(this.item.id);
         } else {
           this.$parent.$parent.player.tasks.pop();
         }
@@ -95,12 +106,12 @@ export default {
   height: 50px;
   z-index: 1;
   position: relative;
-  background-color: #aaaaaa;
+  background-color: #b8860b;
   justify-content: center;
   border-radius: 4px;
 }
 .bar {
-  background-color: #39304b;
+  background-color: #00000080;
   height: 100%;
   left: 0;
   width: 0;

@@ -1,0 +1,51 @@
+[
+    {
+        "id": "shelter",
+        "name": "shelter",
+        "time": 1,
+        "add": [
+            {
+                "target": "stamnia",
+                "type": "resources",
+                "value": 5,
+                "key": "max"
+            },
+            {
+                "target": "rest",
+                "add": {
+                    "target": "stamnia",
+                    "rate": 1
+                },
+                "type": "actions"
+            }
+        ],
+        "cost": [
+            {
+                "target": "scrap",
+                "value": 5,
+                "type": "resources"
+            }
+        ]
+    },
+    {
+        "id": "scrap_pile",
+        "name": "scrap pile",
+        "time": 5,
+        "add": [
+            {
+                "target": "scrap",
+                "add": {
+                    "max": 5
+                },
+                "type": "resources"
+            }
+        ],
+        "cost": [
+            {
+                "target": "scrap",
+                "value": 10,
+                "type": "resources"
+            }
+        ]
+    }
+]

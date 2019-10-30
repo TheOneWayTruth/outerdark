@@ -30,8 +30,8 @@
         },
         "unlock": [
             {
-                "target": "structure",
-                "type": "tab"
+                "target": "shelter",
+                "type": "upgrades"
             }
         ]
     }

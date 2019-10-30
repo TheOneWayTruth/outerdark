@@ -1,7 +1,8 @@
 <template>
   <div>
-    <div :key="ix" v-for="(item,ix) in items">
-      <span v-html="item"></span>
+    <h4>Log:</h4>
+    <div :key="item.id" v-for="item in items.slice().reverse()">
+      <div class="log" v-html="item"></div>
     </div>
   </div>
 </template>
@@ -16,4 +17,7 @@ export default {
 };
 </script>
 <style scoped>
+.log {
+  margin: 10px 0px;
+}
 </style>

@@ -13,7 +13,7 @@
         "id": "scrap",
         "name": "scrap",
         "value": 0,
-        "max": 10,
+        "max": 5,
         "tick": 0,
         "desc": "could be usefull",
         "procent": 0,

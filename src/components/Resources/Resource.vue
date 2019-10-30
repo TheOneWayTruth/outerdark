@@ -22,7 +22,7 @@ export default {
 .top {
   display: flex;
   flex-direction: column;
-  margin: 10px;
+  margin: 10px 0px;
   width: 150px;
   height: 50px;
   z-index: -1;
