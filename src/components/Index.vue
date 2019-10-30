@@ -19,15 +19,18 @@ import { filterList, getItemById } from "./functions";
 
 import actionslist from "./json/actions.json";
 import reslist from "./json/resources.json";
+import storylist from "./json/story.json";
 
 p.lists.actions = actionslist;
 p.lists.resources = reslist;
+p.lists.story = storylist;
 
 export default {
   watch: {
     player: {
       deep: true,
       handler(e) {
+        this.CheckStory();
         for (let t in e.lists.actions) {
           if (e.tasks.indexOf(e.lists.actions[t].id) != -1) {
             e.lists.actions[t].paused = false;
@@ -49,6 +52,21 @@ export default {
     return {
       player: p
     };
+  },
+  methods: {
+    CheckStory() {
+      let l = getItemById(
+        p.lists[p.lists.story[p.story].req.type],
+        p.lists.story[p.story].req.target
+      );
+      if (l.value >= p.lists.story[p.story].req.value) {
+        for (let u in p.lists.story[p.story].unlock) {
+          let i = p.lists.story[p.story].unlock[u];
+          p.unlocked[i.type].push(i.target);
+        }
+        p.story++;
+      }
+    }
   }
 };
 </script>

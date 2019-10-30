@@ -34,6 +34,7 @@ export default {
           this.$parent.$parent.player.lists.resources,
           item.cost[i].target
         );
+
         if (e.value < item.cost[i].rate) {
           return true;
         }
@@ -51,6 +52,7 @@ export default {
         } else {
           e.value += item.get[i].rate;
         }
+        e.procent = (e.value / e.max) * 100;
       }
     },
     CallAction() {

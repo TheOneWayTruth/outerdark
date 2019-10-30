@@ -4,7 +4,8 @@ var p = {
     story: 0,
     unlocked: {
         resources: ["stamnia"],
-        actions: ["rest", "collect_scrap"]
+        actions: ["rest"],
+        tab: []
     },
     tasks: []
 }

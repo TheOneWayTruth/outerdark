@@ -25,7 +25,7 @@ export default {
   margin: 10px;
   width: 150px;
   height: 50px;
-  z-index: 1;
+  z-index: -1;
   position: relative;
   background-color: #777777;
   justify-content: center;
@@ -37,7 +37,7 @@ export default {
   left: 0;
   width: 0;
   position: absolute;
-  z-index: -1;
+  z-index: 1;
   transition: width 0.05s;
   border-radius: 4px;
 }
@@ -45,7 +45,7 @@ export default {
   margin: 2px 0px;
   position: relative;
   line-height: 1em;
-  z-index: 1;
+  z-index: 2;
   color: white;
   text-align: center;
 }
