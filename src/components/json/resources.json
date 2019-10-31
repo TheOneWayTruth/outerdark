@@ -18,5 +18,69 @@
         "desc": "could be usefull",
         "procent": 0,
         "color": "#8f8f8f"
+    },
+    {
+        "id": "code",
+        "name": "code",
+        "value": 0,
+        "max": 5,
+        "tick": 0,
+        "desc": "0101010100010",
+        "procent": 0,
+        "color": "#d4d4d4"
+    },
+    {
+        "id": "electronic",
+        "name": "electronic",
+        "value": 0,
+        "max": 5,
+        "tick": 0,
+        "desc": "tz tz tz",
+        "procent": 0,
+        "color": "#33661e"
+    },
+    {
+        "id": "metal",
+        "name": "metal",
+        "value": 0,
+        "max": 5,
+        "tick": 0,
+        "desc": "it shines",
+        "procent": 0,
+        "color": "#454545"
+    },
+    {
+        "id": "drones",
+        "name": "drones",
+        "value": 0,
+        "max": 5,
+        "tick": 0,
+        "desc": "needed to be programmed",
+        "procent": 0,
+        "color": "#000000"
+    },
+    {
+        "id": "sdrones",
+        "name": "scrap drones",
+        "value": 0,
+        "max": 5,
+        "tick": 0,
+        "desc": "collects scrap",
+        "procent": 0,
+        "color": "#262626",
+        "action": "collect_scrap",
+        "rate": 0.1
+    },
+    {
+        "id": "rdrones",
+        "name": "recylce drones",
+        "value": 0,
+        "max": 5,
+        "tick": 0,
+        "desc": "recylces scrap",
+        "procent": 0,
+        "color": "#002109",
+        "action": "recylce",
+        "rate": 0.1
     }
 ]

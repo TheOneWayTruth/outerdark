@@ -2,50 +2,366 @@
     {
         "id": "shelter",
         "name": "shelter",
-        "time": 1,
-        "add": [
+        "get": [
             {
+                "key": "max",
                 "target": "stamnia",
                 "type": "resources",
-                "value": 5,
-                "key": "max"
+                "value": 5
             },
             {
-                "target": "rest",
-                "add": {
-                    "target": "stamnia",
-                    "rate": 1
+                "get": {
+                    "value": 1,
+                    "target": "stamnia"
                 },
+                "target": "rest",
                 "type": "actions"
             }
         ],
         "cost": [
             {
                 "target": "scrap",
-                "value": 5,
-                "type": "resources"
+                "type": "resources",
+                "value": 5
+            }
+        ],
+        "time": 1
+    },
+    {
+        "id": "recycle",
+        "name": "recycle",
+        "time": 1,
+        "unlock": [
+            {
+                "id": "recycle",
+                "type": "actions"
             }
         ]
     },
     {
         "id": "scrap_pile",
         "name": "scrap pile",
-        "time": 5,
-        "add": [
+        "get": [
             {
+                "key": "max",
                 "target": "scrap",
-                "add": {
-                    "max": 5
+                "type": "resources",
+                "value": 5
+            },
+            {
+                "get": {
+                    "value": 0.2,
+                    "target": "scrap"
                 },
-                "type": "resources"
+                "target": "collect_scrap",
+                "type": "actions"
             }
         ],
         "cost": [
             {
                 "target": "scrap",
-                "value": 10,
-                "type": "resources"
+                "type": "resources",
+                "value": 5
             }
-        ]
+        ],
+        "time": 5
+    },
+    {
+        "id": "computer",
+        "name": "computer",
+        "get": [
+            {
+                "key": "max",
+                "target": "code",
+                "type": "resources",
+                "value": 5
+            }
+        ],
+        "cost": [
+            {
+                "target": "metal",
+                "type": "resources",
+                "value": 2.5
+            },
+            {
+                "target": "electronic",
+                "type": "resources",
+                "value": 1
+            }
+        ],
+        "time": 1
+    },
+    {
+        "id": "metal_scanner",
+        "name": "metal_scanner",
+        "get": [
+            {
+                "get": {
+                    "value": 1,
+                    "target": "scrap"
+                },
+                "target": "collect_scrap",
+                "type": "actions"
+            }
+        ],
+        "cost": [
+            {
+                "target": "metal",
+                "type": "resources",
+                "value": 2
+            },
+            {
+                "target": "electronic",
+                "type": "resources",
+                "value": 1
+            }
+        ],
+        "time": 1
+    },
+    {
+        "id": "mixer",
+        "name": "mixer",
+        "get": [
+            {
+                "get": {
+                    "value": 0.2,
+                    "target": "electronic"
+                },
+                "target": "recylce",
+                "type": "actions"
+            },
+            {
+                "get": {
+                    "value": 0.5,
+                    "target": "metal"
+                },
+                "target": "recylce",
+                "type": "actions"
+            }
+        ],
+        "cost": [
+            {
+                "target": "metal",
+                "type": "resources",
+                "value": 3
+            },
+            {
+                "target": "electronic",
+                "type": "resources",
+                "value": 2
+            }
+        ],
+        "time": 1
+    },
+    {
+        "id": "ram",
+        "name": "ram",
+        "get": [
+            {
+                "key": "max",
+                "target": "code",
+                "type": "resources",
+                "value": 10
+            }
+        ],
+        "cost": [
+            {
+                "target": "electronic",
+                "type": "resources",
+                "value": 4
+            }
+        ],
+        "time": 2
+    },
+    {
+        "id": "scripts",
+        "name": "scripts",
+        "get": [
+            {
+                "key": "tick",
+                "target": "code",
+                "type": "resources",
+                "value": 0.2
+            }
+        ],
+        "cost": [
+            {
+                "target": "code",
+                "type": "resources",
+                "value": 5
+            }
+        ],
+        "time": 1
+    },
+    {
+        "id": "workbench",
+        "name": "workbench",
+        "get": [
+            {
+                "key": "max",
+                "target": "drones",
+                "type": "resources",
+                "value": 5
+            }
+        ],
+        "cost": [
+            {
+                "target": "metal",
+                "type": "resources",
+                "value": 5
+            }
+        ],
+        "time": 1
+    },
+    {
+        "id": "bed",
+        "name": "bed",
+        "get": [
+            {
+                "key": "max",
+                "target": "stamnia",
+                "type": "resources",
+                "value": 5
+            },
+            {
+                "get": {
+                    "value": 1,
+                    "target": "stamnia"
+                },
+                "target": "rest",
+                "type": "actions"
+            }
+        ],
+        "cost": [
+            {
+                "target": "scrap",
+                "type": "resources",
+                "value": 10
+            }
+        ],
+        "time": 1
+    },
+    {
+        "id": "crafting_arm",
+        "name": "crafting_arm",
+        "get": [
+            {
+                "get": {
+                    "value": 1,
+                    "target": "drones"
+                },
+                "target": "build_drone",
+                "type": "actions"
+            }
+        ],
+        "cost": [
+            {
+                "target": "metal",
+                "type": "resources",
+                "value": 10
+            },
+            {
+                "target": "electronic",
+                "type": "resources",
+                "value": 2
+            }
+        ],
+        "time": 1
+    },
+    {
+        "id": "magnets",
+        "name": "magnets",
+        "get": [
+            {
+                "get": {
+                    "value": 1,
+                    "target": "metal"
+                },
+                "target": "collect_scrap",
+                "type": "actions"
+            },
+            {
+                "get": {
+                    "value": 0.1,
+                    "target": "electronic"
+                },
+                "target": "collect_scrap",
+                "type": "actions"
+            },
+            {
+                "get": {
+                    "value": 2,
+                    "target": "scrap"
+                },
+                "target": "collect_scrap",
+                "type": "actions"
+            }
+        ],
+        "cost": [
+            {
+                "target": "metal",
+                "type": "resources",
+                "value": 5
+            },
+            {
+                "target": "electronic",
+                "type": "resources",
+                "value": 2
+            }
+        ],
+        "time": 1
+    },
+    {
+        "id": "smelter",
+        "name": "smelter",
+        "get": [
+            {
+                "get": {
+                    "value": 0.4,
+                    "target": "electronic"
+                },
+                "target": "recylce",
+                "type": "actions"
+            }
+        ],
+        "cost": [
+            {
+                "target": "metal",
+                "type": "resources",
+                "value": 8
+            },
+            {
+                "target": "electronic",
+                "type": "resources",
+                "value": 1
+            }
+        ],
+        "time": 2
+    },
+    {
+        "id": "metal_chest",
+        "name": "metal_chest",
+        "get": [
+            {
+                "key": "max",
+                "target": "metal",
+                "type": "resources",
+                "value": 5
+            },
+            {
+                "key": "max",
+                "target": "electronic",
+                "type": "resources",
+                "value": 1
+            }
+        ],
+        "cost": [
+            {
+                "target": "metal",
+                "type": "resources",
+                "value": 5
+            }
+        ],
+        "time": 3
     }
 ]

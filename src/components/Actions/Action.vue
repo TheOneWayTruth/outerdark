@@ -1,15 +1,26 @@
 <template>
   <div>
     <div @click="StartAction()" class="top">
-      <span :class="{cant : cantAfford()}" class="text">{{item.name}}</span>
+      <span :class="{cant : callAfford()}" class="text">{{item.name}}</span>
       <span class="bar" :style="{ width: item.percent + '%', backgroundColor:item.color }"></span>
     </div>
+    <Tooltip :name="item.name" :desc="item.desc" :cost="item.cost" :effect="item.get" />
   </div>
 </template>
 
 <script>
-import { isIdInArray, getItemById } from "../functions";
+import Tooltip from "../extra/Tooltip.vue";
+import {
+  isIdInArray,
+  getItemById,
+  removeValue,
+  addValue,
+  cantAfford
+} from "../functions";
 export default {
+  components: {
+    Tooltip
+  },
   mounted() {
     let el = this;
     this.timer = setInterval(function() {
@@ -28,53 +39,20 @@ export default {
     }
   },
   methods: {
-    cantAfford() {
-      for (let i = 0; i < this.item.cost.length; i++) {
-        let e = getItemById(
-          this.$parent.$parent.player.lists.resources,
-          this.item.cost[i].target
-        );
-
-        if (e.value < this.item.cost[i].rate) {
-          return true;
-        }
-      }
-      return false;
-    },
-    addValue() {
-      for (let i = 0; i < this.item.get.length; i++) {
-        let e = getItemById(
-          this.$parent.$parent.player.lists.resources,
-          this.item.get[i].target
-        );
-        if (e.value + this.item.get[i].rate > e.max) {
-          e.value = e.max;
-        } else {
-          e.value += this.item.get[i].rate;
-        }
-        e.procent = (e.value / e.max) * 100;
-      }
-    },
-    removeValue() {
-      for (let i = 0; i < this.item.cost.length; i++) {
-        let e = getItemById(
-          this.$parent.$parent.player.lists.resources,
-          this.item.cost[i].target
-        );
-        e.value -= this.item.cost[i].rate;
-        e.procent = (e.value / e.max) * 100;
-      }
+    callAfford() {
+      return cantAfford(this.item, this.$parent.$parent.player);
     },
     CallAction() {
+      let player = this.$parent.$parent.player;
       if (!this.item.paused) {
         this.item.percent += 5;
         if (this.item.percent >= 100) {
           this.item.percent = 0;
-          this.addValue(this.item);
-          this.removeValue(this.item);
+          addValue(this.item, player);
+          removeValue(this.item, player);
         }
-        if (this.cantAfford(this.item)) {
-          this.$parent.$parent.player.tasks[0] = "rest";
+        if (cantAfford(this.item, player)) {
+          player.tasks[0] = "rest";
           this.item.paused = true;
         }
       }
@@ -83,14 +61,15 @@ export default {
       return isIdInArray(this.$parent.$parent.player.tasks, this.item.id);
     },
     StartAction() {
-      if (!this.cantAfford()) {
+      let tasks = this.$parent.$parent.player.tasks;
+      if (!cantAfford(this.item, this.$parent.$parent.player)) {
         if (!this.isActive()) {
-          if (this.$parent.$parent.player.tasks.length > 0) {
-            this.$parent.$parent.player.tasks.pop();
+          if (tasks.length > 0) {
+            tasks.pop();
           }
-          this.$parent.$parent.player.tasks.push(this.item.id);
+          tasks.push(this.item.id);
         } else {
-          this.$parent.$parent.player.tasks.pop();
+          tasks.pop();
         }
       }
     }

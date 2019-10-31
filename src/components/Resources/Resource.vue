@@ -1,15 +1,23 @@
 <template>
   <div>
-    <div class="top">
-      <span class="text">{{item.name}}</span>
-      <span class="text">{{item.value}} / {{item.max}}</span>
-      <span class="bar" :style="{ width: item.procent + '%', backgroundColor:item.color }"></span>
+    <div>
+      <div class="top">
+        <span class="text">{{item.name}}</span>
+        <span class="text">{{item.value}} / {{item.max}}</span>
+        <span class="bar" :style="{ width: item.procent + '%', backgroundColor:item.color }"></span>
+      </div>
     </div>
+    <Tooltip :name="item.name" :desc="item.desc" :tick="item.tick" />
   </div>
 </template>
 
 <script>
+import Tooltip from "../extra/Tooltip.vue";
+
 export default {
+  components: {
+    Tooltip
+  },
   props: {
     item: {
       type: Object,

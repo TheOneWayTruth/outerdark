@@ -34,5 +34,154 @@
                 "type": "upgrades"
             }
         ]
+    },
+    {
+        "id": "shelter",
+        "desc": "<span>You should make use of the material</span>",
+        "index": 2,
+        "req": {
+            "target": "shelter",
+            "type": "bought"
+        },
+        "unlock": [
+            {
+                "target": "scrap_pile",
+                "type": "upgrades"
+            },
+            {
+                "target": "recylce",
+                "type": "actions"
+            },
+            {
+                "target": "electronic",
+                "type": "resources"
+            },
+            {
+                "target": "metal",
+                "type": "resources"
+            }
+        ]
+    },
+    {
+        "id": "shelter",
+        "desc": "<span>Maybe you should start building something familiar</span>",
+        "index": 3,
+        "req": {
+            "target": "electronic",
+            "type": "resources",
+            "value": 1
+        },
+        "unlock": [
+            {
+                "target": "computer",
+                "type": "upgrades"
+            },
+            {
+                "target": "metal_scanner",
+                "type": "upgrades"
+            },
+            {
+                "target": "mixer",
+                "type": "upgrades"
+            },
+            {
+                "target": "bed",
+                "type": "upgrades"
+            }
+        ]
+    },
+    {
+        "id": "computer",
+        "desc": "<span>Ahh yes 127.0.0.1</span>",
+        "index": 4,
+        "req": {
+            "target": "computer",
+            "type": "bought"
+        },
+        "unlock": [
+            {
+                "target": "write_code",
+                "type": "actions"
+            },
+            {
+                "target": "code",
+                "type": "resources"
+            },
+            {
+                "target": "ram",
+                "type": "upgrades"
+            },
+            {
+                "target": "scripts",
+                "type": "upgrades"
+            },
+            {
+                "target": "workbench",
+                "type": "upgrades"
+            },
+            {
+                "target": "metal_chest",
+                "type": "upgrades"
+            }
+        ]
+    },
+    {
+        "id": "workbench",
+        "desc": "<span>lets start to craft</span>",
+        "index": 5,
+        "req": {
+            "target": "workbench",
+            "type": "bought"
+        },
+        "unlock": [
+            {
+                "target": "drones",
+                "type": "resources"
+            },
+            {
+                "target": "crafting_arm",
+                "type": "upgrades"
+            },
+            {
+                "target": "magnets",
+                "type": "upgrades"
+            },
+            {
+                "target": "smelter",
+                "type": "upgrades"
+            },
+            {
+                "target": "build_drone",
+                "type": "actions"
+            }
+        ]
+    },
+    {
+        "id": "drones",
+        "desc": "<span>Now you can programm them</span>",
+        "index": 6,
+        "req": {
+            "target": "drones",
+            "type": "resources",
+            "value": 1
+        },
+        "unlock": [
+            {
+                "target": "programm_rdrone",
+                "type": "actions"
+            },
+            {
+                "target": "programm_sdrone",
+                "type": "actions"
+            },
+            {
+                "target": "rdrones",
+                "type": "resources"
+            },
+            {
+                "target": "sdrones",
+                "type": "resources"
+            }
+        ]
     }
 ]
