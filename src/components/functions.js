@@ -11,13 +11,12 @@ export function getItemById(list, id) {
 }
 
 
-export function cantAfford(item, player, exclude, rate = 1) {
+export function cantAfford(item, player, exclude = "", rate = 1) {
     for (let d = 0; d < item.cost.length; d++) {
         let c = getItemById(player.lists.resources, item.cost[d].target);
         if (exclude != c.id)
-            return !0;
-        if (c.value < (item.cost[d].value * rate))
-            return !0;
+            if (c.value < (item.cost[d].value * rate))
+                return !0;
     }
     return !1
 }
@@ -32,7 +31,7 @@ export function addValue(item, player, rate = 1, ) {
     }
 }
 
-export function removeValue(item, player, exclude, rate = 1) {
+export function removeValue(item, player, exclude = "", rate = 1) {
     for (let c, d = 0; d < item.cost.length; d++) {
         c = getItemById(player.lists.resources, item.cost[d].target);
         if (exclude != c.id) {
