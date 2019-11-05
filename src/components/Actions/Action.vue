@@ -1,7 +1,10 @@
 <template>
   <div>
     <div @click="StartAction()" class="top">
-      <span :class="{cant : callAfford()}" class="text">{{item.name}}</span>
+      <div>
+        <img :src="require(`../images/Actions/${item.id}.png`)" />
+        <span :class="{cant : callAfford()}" class="text">{{item.name}}</span>
+      </div>
       <span class="bar" :style="{ width: item.percent + '%', backgroundColor:item.color }"></span>
     </div>
     <Tooltip :name="item.name" :desc="item.desc" :cost="item.cost" :effect="item.get" />
@@ -55,6 +58,8 @@ export default {
           player.tasks[0] = "rest";
           this.item.paused = true;
         }
+      } else {
+        this.item.percent = 0;
       }
     },
     isActive() {
@@ -77,12 +82,19 @@ export default {
 };
 </script>
 <style scoped>
+img {
+  width: 32px;
+  height: 32px;
+  margin: 10px 10px;
+  float: left;
+  border-radius: 3px;
+}
 .top {
   display: flex;
   flex-direction: column;
   margin: 10px;
   width: 150px;
-  height: 50px;
+  height: auto;
   z-index: 1;
   position: relative;
   background-color: #b8860b;

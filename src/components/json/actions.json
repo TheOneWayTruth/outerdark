@@ -53,8 +53,8 @@
         "paused": true
     },
     {
-        "id": "recylce",
-        "name": "recylce",
+        "id": "recycle",
+        "name": "recycle",
         "cost": [
             {
                 "target": "stamnia",
@@ -108,7 +108,7 @@
     },
     {
         "id": "programm_rdrone",
-        "name": "programm recylce drone",
+        "name": "programm recycle drone",
         "cost": [
             {
                 "target": "stamnia",

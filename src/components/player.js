@@ -8,6 +8,7 @@ var p = {
         actions: ["rest"],
         upgrades: []
     },
-    tasks: []
+    tasks: [],
+    build: 3
 }
 export default p;

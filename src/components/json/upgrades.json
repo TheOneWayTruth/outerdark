@@ -127,7 +127,7 @@
                     "value": 0.2,
                     "target": "electronic"
                 },
-                "target": "recylce",
+                "target": "recycle",
                 "type": "actions"
             },
             {
@@ -135,7 +135,7 @@
                     "value": 0.5,
                     "target": "metal"
                 },
-                "target": "recylce",
+                "target": "recycle",
                 "type": "actions"
             }
         ],
@@ -320,7 +320,7 @@
                     "value": 0.4,
                     "target": "electronic"
                 },
-                "target": "recylce",
+                "target": "recycle",
                 "type": "actions"
             }
         ],

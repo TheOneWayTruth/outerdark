@@ -4,6 +4,7 @@
     <Actions ref="actions" />
     <Upgrades />
     <Logs :items="player.logs" />
+    <div class="footer"></div>
   </div>
 </template>
 
@@ -112,7 +113,12 @@ export default {
     LoadGame() {
       let data = window.localStorage.getItem("savegame");
       if (data != null) {
-        this.player = JSON.parse(data);
+        var pdata = JSON.parse(data);
+        if (pdata.build != undefined && pdata.build > p.build) {
+          this.player = pdata;
+        } else {
+          this.player = p;
+        }
       }
       this.loaded = true;
     },

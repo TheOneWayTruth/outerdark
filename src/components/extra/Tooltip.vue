@@ -52,7 +52,9 @@ export default {
   },
   data() {
     return {
-      show: false
+      show: false,
+      elistender: null,
+      llistender: null
     };
   },
   methods: {
@@ -92,17 +94,33 @@ export default {
   },
   mounted() {
     let el = this;
+    this.elistender = function() {
+      el.show = true;
+      setTimeout(function() {
+        el.show = false;
+      }, 2000);
+    };
+    this.llistender = function() {
+      el.show = false;
+    };
+
     this.$el.parentElement.firstChild.addEventListener(
       "mouseenter",
-      function() {
-        el.show = true;
-      }
+      this.elistender
     );
     this.$el.parentElement.firstChild.addEventListener(
       "mouseleave",
-      function() {
-        el.show = false;
-      }
+      this.llistender
+    );
+  },
+  beforeDestroy() {
+    this.$el.parentElement.firstChild.removeEventListener(
+      "mouseenter",
+      this.elistender
+    );
+    this.$el.parentElement.firstChild.removeEventListener(
+      "mouseleave",
+      this.llistender
     );
   }
 };

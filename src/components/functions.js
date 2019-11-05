@@ -40,3 +40,12 @@ export function removeValue(item, player, exclude = "", rate = 1) {
         }
     }
 }
+
+
+export function isMobile() {
+    if (window.innerWidth <= 800) {
+        return true;
+    } else {
+        return false;
+    }
+}

@@ -57,7 +57,7 @@
         "tick": 0,
         "desc": "needed to be programmed",
         "procent": 0,
-        "color": "#000000"
+        "color": "#300300"
     },
     {
         "id": "sdrones",
@@ -73,14 +73,14 @@
     },
     {
         "id": "rdrones",
-        "name": "recylce drones",
+        "name": "recycle drones",
         "value": 0,
         "max": 5,
         "tick": 0,
-        "desc": "recylces scrap",
+        "desc": "recycles scrap",
         "procent": 0,
         "color": "#002109",
-        "action": "recylce",
+        "action": "recycle",
         "rate": 0.1
     }
 ]
